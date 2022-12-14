@@ -80,6 +80,7 @@ public class SpaceMain {
 				x = (int) xx;
 				break;
 			}
+			panel.repaint();
 		}
 	}
 
@@ -93,12 +94,12 @@ public class SpaceMain {
 		window.setVisible(true);
 	}
 
-	private class DrawingPanel extends JPanel implements KeyListener {
+	private class DrawingPanel extends JPanel {
 		DrawingPanel() {
 			this.setPreferredSize(new Dimension(PANW, PANH));
 			this.setBackground(new Color(168, 185, 190));
 
-			this.addKeyListener(this);
+			this.addKeyListener(new KL());
 			this.setFocusable(true);
 		}
 
@@ -118,19 +119,29 @@ public class SpaceMain {
 			g.setColor(ship.clr);
 			g.fillRect(ship.x, ship.y, ship.width, ship.height);
 		}
+	}
 
-		@Override
-		public void keyTyped(KeyEvent e) {
+	class KL implements KeyListener {
+		private boolean keysDown[] = new boolean[256];
+
+		public boolean isKeyDown(int key) {
+			return keysDown[key];
 		}
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			ship.moveShip(e.getKeyCode());
-			panel.repaint();
+			if (e.getKeyCode() < 256)
+				keysDown[e.getKeyCode()] = true;
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
+			if (e.getKeyCode() < 256)
+				keysDown[e.getKeyCode()] = false;
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
 		}
 	}
 }
