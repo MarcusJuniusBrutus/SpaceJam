@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-/**
- * Kunala, 2022 Dec 12
+/*
+ * Kunala, 2022 Dec 12 - Dec 14
  */
 
 public class SpaceMain implements ActionListener {
