@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 public class SpaceShip extends Rectangle {
 	double xx, yy;
 	double vx, vy;
-	Color clr = new Color(100, 0, 100);
+	Color clr;
 
 	SpaceShip() {
 		// size, width et height are properties of Rectangle class
@@ -31,6 +31,8 @@ public class SpaceShip extends Rectangle {
 		// velocity in the x et y directions
 		vx = 10;
 		vy = 10;
+
+		clr = new Color(100, 0, 100);
 	}
 
 	// updates coordinates based on KeyPressed
@@ -63,8 +65,8 @@ public class SpaceShip extends Rectangle {
 			yy = SpaceMain.PANH;
 		if (yy > SpaceMain.PANH)
 			yy = 0;
-		
-		//update location
+
+		// update location
 		x = (int) xx;
 		y = (int) yy;
 	}

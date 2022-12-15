@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,6 +30,9 @@ public class SpaceMain implements ActionListener {
 	static SpaceShip ship = new SpaceShip();
 	Timer maine = new Timer(10, this);
 	BetterKeyListener bKL = new BetterKeyListener();
+
+	public static ArrayList <Laser> laserList = new ArrayList <Laser> ();
+	Laser l = new Laser();
 
 	public static void main(String[] args) {
 		// using this makes animation more reliable

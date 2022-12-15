@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
  * Attached to SpaceMain, allows for diagonal movement
  */
 
-public class BetterKeyListener implements KeyListener{
+public class BetterKeyListener implements KeyListener {
 	private boolean keysDown[] = new boolean[256];
 
 	public boolean isKeyDown(int key) {
@@ -18,6 +18,8 @@ public class BetterKeyListener implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() < 256)
 			keysDown[e.getKeyCode()] = true;
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+			new Laser();
 	}
 
 	@Override
