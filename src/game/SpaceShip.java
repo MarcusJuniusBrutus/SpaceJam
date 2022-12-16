@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 import java.awt.Color;
@@ -10,6 +7,7 @@ import java.awt.event.KeyEvent;
 /*
  * Attatched to SpaceMain, contains SpaceShip coordinates, size, et velocity
  */
+
 public class SpaceShip extends Rectangle {
 	double xx, yy;
 	double vx, vy;
