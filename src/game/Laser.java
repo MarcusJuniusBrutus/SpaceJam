@@ -14,7 +14,7 @@ public class Laser extends Rectangle {
 	Color clr;
 
 	Laser() {
-		width = 50;
+		width = 35;
 		height = 10;
 
 		xx = SpaceMain.ship.xx + SpaceMain.ship.width + 50;

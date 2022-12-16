@@ -18,8 +18,11 @@ public class BetterKeyListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() < 256)
 			keysDown[e.getKeyCode()] = true;
-		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			SpaceMain.laserList.add(new Laser());
+		}
+		if (SpaceMain.laserList.size() > 12) {
+			SpaceMain.laserList.remove(0);
 		}
 	}
 
