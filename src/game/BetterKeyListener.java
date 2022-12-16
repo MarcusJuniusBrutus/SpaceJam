@@ -18,11 +18,23 @@ public class BetterKeyListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() < 256)
 			keysDown[e.getKeyCode()] = true;
+
+		// if space pressed, create laser
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			SpaceMain.laserList.add(new Laser());
 		}
-		if (SpaceMain.laserList.size() > 12) {
+
+		// if more than 12 lasers shot, remove first laser in list
+		if (SpaceMain.laserList.size() > 5  ) {
 			SpaceMain.laserList.remove(0);
+		}
+
+		// removes laser if it goes off screen
+		for (int x = 0; x < SpaceMain.laserList.size(); x++) {
+			if (SpaceMain.laserList.get(x).x < 0 || SpaceMain.laserList.get(x).x > SpaceMain.PANW
+					|| SpaceMain.laserList.get(x).y < 0 || SpaceMain.laserList.get(x).y > SpaceMain.PANH) {
+				SpaceMain.laserList.remove(x);
+			}
 		}
 	}
 

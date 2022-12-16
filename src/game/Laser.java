@@ -17,7 +17,7 @@ public class Laser extends Rectangle {
 		width = 35;
 		height = 10;
 
-		xx = SpaceMain.ship.xx + SpaceMain.ship.width + 50;
+		xx = SpaceMain.ship.xx + SpaceMain.ship.width;
 		yy = SpaceMain.ship.yy + SpaceMain.ship.height / 2;
 
 		x = (int) xx;
