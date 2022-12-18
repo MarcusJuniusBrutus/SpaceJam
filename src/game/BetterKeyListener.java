@@ -25,7 +25,7 @@ public class BetterKeyListener implements KeyListener {
 		}
 
 		// if more than 12 lasers shot, remove first laser in list
-		if (SpaceMain.laserList.size() > 5  ) {
+		if (SpaceMain.laserList.size() > 5) {
 			SpaceMain.laserList.remove(0);
 		}
 
