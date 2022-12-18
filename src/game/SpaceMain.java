@@ -118,16 +118,20 @@ public class SpaceMain implements ActionListener {
 			enemyList.get(x).move();
 		}
 
-		//if laser intersects enemy, take away enemy health
+		// if laser intersects enemy, take away enemy health
 		for (int x = 0; x < enemyList.size(); x++) {
 			for (int y = 0; y < laserList.size(); y++) {
 				if (laserList.get(y).intersects(enemyList.get(x))) {
+					enemyList.get(x).healthPoints--;
 					laserList.remove(y);
-					enemyList.remove(x);
 				}
 			}
+			//remove enemy if health is below 0
+			if (enemyList.get(x).healthPoints <= 0) {
+				enemyList.remove(x);
+			}
 		}
-
+		
 		panel.repaint();
 	}
 }

@@ -7,7 +7,7 @@ Attatched to SpaceShip, allows for enemy ships
 */
 
 public class Enemy extends SpaceShip {
-	int health;
+	int healthPoints;
 
 	Enemy() {
 		width = 100;
@@ -25,7 +25,7 @@ public class Enemy extends SpaceShip {
 		clr = new Color(100, 0, 0);
 		
 		//how many bullets it takes to kill enemy
-		health = 1;
+		healthPoints = 3;
 	}
 
 	void move() {
