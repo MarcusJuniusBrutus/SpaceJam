@@ -25,12 +25,16 @@ public class SpaceMain implements ActionListener {
 	static final int PANW = 1200;
 	static final int PANH = 900;
 	static final Color BACK = new Color(168, 185, 190);
+
 	public static ArrayList<Laser> laserList = new ArrayList<Laser>();
+	public static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
 	DrawingPanel panel = new DrawingPanel();
 	static SpaceShip ship = new SpaceShip();
 	Timer maine = new Timer(10, this);
 	BetterKeyListener bKL = new BetterKeyListener();
+	static double t = 0;
+	static int speed = 2;
 
 	public static void main(String[] args) {
 		// using this makes animation more reliable
@@ -71,6 +75,7 @@ public class SpaceMain implements ActionListener {
 
 			drawSpaceShip(g);
 			drawLasers(g);
+			drawEnemyShips(g);
 		}
 
 		void drawSpaceShip(Graphics g) {
@@ -82,6 +87,13 @@ public class SpaceMain implements ActionListener {
 			for (int x = 0; x < laserList.size(); x++) {
 				g.setColor(laserList.get(x).clr);
 				g.fillRect(laserList.get(x).x, laserList.get(x).y, laserList.get(x).width, laserList.get(x).height);
+			}
+		}
+
+		void drawEnemyShips(Graphics g) {
+			for (int x = 0; x < enemyList.size(); x++) {
+				g.setColor(enemyList.get(x).clr);
+				g.fillRect(enemyList.get(x).x, enemyList.get(x).y, enemyList.get(x).width, enemyList.get(x).height);
 			}
 		}
 	}
@@ -98,10 +110,36 @@ public class SpaceMain implements ActionListener {
 		if (bKL.isKeyDown('S') || bKL.isKeyDown(40))
 			ship.move('S');
 
+		if (t % 300 == 0) {
+			speed ++;
+			enemyList.add(new Enemy());
+		}
+
+		// moves laser et enemies if they exist
 		for (int x = 0; x < laserList.size(); x++) {
 			laserList.get(x).move();
 		}
+		for (int x = 0; x < enemyList.size(); x++) {
+			enemyList.get(x).move();
+		}
 
+		// if laser intersects enemy, take away enemy health
+		for (int x = 0; x < enemyList.size(); x++) {
+			for (int y = 0; y < laserList.size(); y++) {
+				if (laserList.get(y).intersects(enemyList.get(x))) {
+					enemyList.get(x).health--;
+					laserList.remove(y);
+				}
+			}
+			// remove enemy if health is below 0
+			if (enemyList.get(x).health <= 0) {
+				enemyList.remove(x);
+			}
+		}
+		
+		if (ship.lives <= 0) System.exit(0);
+
+		t++;
 		panel.repaint();
 	}
 }

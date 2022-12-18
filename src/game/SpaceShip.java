@@ -12,6 +12,7 @@ public class SpaceShip extends Rectangle {
 	double xx, yy;
 	double vx, vy;
 	Color clr;
+	int lives = 3;
 
 	SpaceShip() {
 		// size, width et height are properties of Rectangle class
