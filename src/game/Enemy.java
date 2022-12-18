@@ -7,14 +7,14 @@ Attatched to SpaceShip, allows for enemy ships
 */
 
 public class Enemy extends SpaceShip {
-	int healthPoints;
+	int health;
 
 	Enemy() {
 		width = 100;
 		height = 100;
 
 		xx = SpaceMain.PANW;
-		yy = (Math.random() * SpaceMain.PANH) - height;
+		yy = (Math.random() * (SpaceMain.PANH - height));
 
 		x = (int) xx;
 		y = (int) yy;
@@ -25,14 +25,17 @@ public class Enemy extends SpaceShip {
 		clr = new Color(100, 0, 0);
 
 		// how many bullets it takes to kill enemy
-		healthPoints = 3;
+		health = 3;
 	}
 
 	void move() {
 		xx -= vx;
 		x = (int) xx;
 
-		if (x <= 0)
-			System.exit(0);
+		// if enemy reaches the leftmost side, take off a life and remove enemy ship
+		if (x <= 0) {
+			SpaceMain.ship.lives--;
+			SpaceMain.enemyList.remove(this);
+		}
 	}
 }
