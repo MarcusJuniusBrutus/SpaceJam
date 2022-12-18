@@ -110,11 +110,22 @@ public class SpaceMain implements ActionListener {
 		if (bKL.isKeyDown('S') || bKL.isKeyDown(40))
 			ship.move('S');
 
+		// moves laser et enemies if they exist
 		for (int x = 0; x < laserList.size(); x++) {
 			laserList.get(x).move();
 		}
 		for (int x = 0; x < enemyList.size(); x++) {
 			enemyList.get(x).move();
+		}
+
+		//if laser intersects enemy, take away enemy health
+		for (int x = 0; x < enemyList.size(); x++) {
+			for (int y = 0; y < laserList.size(); y++) {
+				if (laserList.get(y).intersects(enemyList.get(x))) {
+					laserList.remove(y);
+					enemyList.remove(x);
+				}
+			}
 		}
 
 		panel.repaint();
