@@ -25,14 +25,14 @@ public class SpaceMain implements ActionListener {
 	static final int PANW = 1200;
 	static final int PANH = 900;
 	static final Color BACK = new Color(168, 185, 190);
+
 	public static ArrayList<Laser> laserList = new ArrayList<Laser>();
+	public static ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
 	DrawingPanel panel = new DrawingPanel();
 	static SpaceShip ship = new SpaceShip();
 	Timer maine = new Timer(10, this);
 	BetterKeyListener bKL = new BetterKeyListener();
-
-	static Enemy enm = new Enemy();
 
 	public static void main(String[] args) {
 		// using this makes animation more reliable
@@ -45,6 +45,8 @@ public class SpaceMain implements ActionListener {
 
 	SpaceMain() {
 		JFrame window = new JFrame("SpaceJam");
+
+		enemyList.add(new Enemy());
 
 		maine.start();
 
@@ -89,8 +91,10 @@ public class SpaceMain implements ActionListener {
 		}
 
 		void drawEnemyShips(Graphics g) {
-			g.setColor(enm.clr);
-			g.fillRect(enm.x, enm.y, enm.width, enm.height);
+			for (int x = 0; x < enemyList.size(); x++) {
+				g.setColor(enemyList.get(x).clr);
+				g.fillRect(enemyList.get(x).x, enemyList.get(x).y, enemyList.get(x).width, enemyList.get(x).height);
+			}
 		}
 	}
 
@@ -109,8 +113,9 @@ public class SpaceMain implements ActionListener {
 		for (int x = 0; x < laserList.size(); x++) {
 			laserList.get(x).move();
 		}
-
-		enm.move();
+		for (int x = 0; x < enemyList.size(); x++) {
+			enemyList.get(x).move();
+		}
 
 		panel.repaint();
 	}
