@@ -13,27 +13,26 @@ public class Enemy extends SpaceShip {
 		width = 100;
 		height = 100;
 
-		xx = SpaceMain.PANW / 5 * 4;
-		yy = SpaceMain.PANH / 2;
+		xx = SpaceMain.PANW;
+		yy = (Math.random() * SpaceMain.PANH) - height;
 
 		x = (int) xx;
 		y = (int) yy;
 
-		vx = 0;
-		vy = 10;
+		vx = SpaceMain.speed;
+		vy = 0;
 
 		clr = new Color(100, 0, 0);
-		
-		//how many bullets it takes to kill enemy
+
+		// how many bullets it takes to kill enemy
 		healthPoints = 3;
 	}
 
 	void move() {
-		yy -= vy;
-		y = (int) yy;
+		xx -= vx;
+		x = (int) xx;
 
-		//makes enemy ship go up and down
-		if (yy < 0 || yy > SpaceMain.PANH - height)
-			vy *= -1;
+		if (x <= 0)
+			System.exit(0);
 	}
 }

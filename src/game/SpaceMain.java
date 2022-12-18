@@ -33,6 +33,8 @@ public class SpaceMain implements ActionListener {
 	static SpaceShip ship = new SpaceShip();
 	Timer maine = new Timer(10, this);
 	BetterKeyListener bKL = new BetterKeyListener();
+	static double t = 0;
+	static int speed = 2;
 
 	public static void main(String[] args) {
 		// using this makes animation more reliable
@@ -45,8 +47,6 @@ public class SpaceMain implements ActionListener {
 
 	SpaceMain() {
 		JFrame window = new JFrame("SpaceJam");
-
-		enemyList.add(new Enemy());
 
 		maine.start();
 
@@ -110,6 +110,11 @@ public class SpaceMain implements ActionListener {
 		if (bKL.isKeyDown('S') || bKL.isKeyDown(40))
 			ship.move('S');
 
+		if (t % 300 == 0) {
+			speed ++;
+			enemyList.add(new Enemy());
+		}
+
 		// moves laser et enemies if they exist
 		for (int x = 0; x < laserList.size(); x++) {
 			laserList.get(x).move();
@@ -126,12 +131,13 @@ public class SpaceMain implements ActionListener {
 					laserList.remove(y);
 				}
 			}
-			//remove enemy if health is below 0
+			// remove enemy if health is below 0
 			if (enemyList.get(x).healthPoints <= 0) {
 				enemyList.remove(x);
 			}
 		}
-		
+
+		t++;
 		panel.repaint();
 	}
 }
