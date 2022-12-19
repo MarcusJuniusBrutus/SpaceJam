@@ -57,9 +57,9 @@ public class SpaceShip extends Rectangle {
 
 		// wraps spaceship around if it moves off screen
 		if (xx < 0)
-			xx = SpaceMain.PANW;
-		if (xx > SpaceMain.PANW)
 			xx = 0;
+		if (xx > SpaceMain.PANW - width)
+			xx = SpaceMain.PANW - width;
 		if (yy < 0)
 			yy = SpaceMain.PANH;
 		if (yy > SpaceMain.PANH)

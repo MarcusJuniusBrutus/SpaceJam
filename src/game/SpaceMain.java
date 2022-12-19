@@ -111,7 +111,7 @@ public class SpaceMain implements ActionListener {
 			ship.move('S');
 
 		if (t % 300 == 0) {
-			speed ++;
+			speed++;
 			enemyList.add(new Enemy());
 		}
 
@@ -136,8 +136,9 @@ public class SpaceMain implements ActionListener {
 				enemyList.remove(x);
 			}
 		}
-		
-		if (ship.lives <= 0) System.exit(0);
+
+		if (ship.lives <= 0)
+			System.exit(0);
 
 		t++;
 		panel.repaint();
