@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /*
- * Kunala, 2022 Dec 12 - Dec 14
+ * MarcusJuniusBrutus, 2022 Dec 12 - Dec 20
  */
 
 public class SpaceMain implements ActionListener {
@@ -33,8 +33,9 @@ public class SpaceMain implements ActionListener {
 	static SpaceShip ship = new SpaceShip();
 	Timer maine = new Timer(10, this);
 	BetterKeyListener bKL = new BetterKeyListener();
-	static double t = 0;
+	static int t = 0;
 	static int speed = 2;
+	static int prevT = 0;
 
 	public static void main(String[] args) {
 		// using this makes animation more reliable
